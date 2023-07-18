@@ -1,4 +1,4 @@
-import { View, Text ,SafeAreaView} from 'react-native'
+import { View, Text ,SafeAreaView,StyleSheet} from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -32,7 +32,9 @@ export default function App() {
               return<Icon name={IconName} size={size} color={color}></Icon>
 
           },
-          headerShown:false
+          headerShown:false,
+          tabBarShowLabel:false,
+          tabBarStyle:styles.tabbar
 
         })} >
           <Tab.Screen name="Home" component={Home} />
@@ -45,3 +47,9 @@ export default function App() {
     </View>
   )
 }
+
+const styles= StyleSheet.create({
+    tabbar:{
+      height:70
+    }
+})
