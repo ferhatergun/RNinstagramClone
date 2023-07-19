@@ -1,9 +1,22 @@
-import { View, Text ,SafeAreaView,StyleSheet,StatusBar,Image,FlatList} from 'react-native'
-import React from 'react'
+import { View, Text ,SafeAreaView,StyleSheet,StatusBar,Image,FlatList,RefreshControl} from 'react-native'
+import React,{useState} from 'react'
 import Icon from "react-native-vector-icons/Ionicons";
+import HomePost from '../components/HomePost';
+import { ScrollView } from 'react-native';
+import Story from '../components/Story';
 
 
 export default function Home() {
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh=()=>{
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }
+
 
   const data = [
     {
@@ -61,23 +74,31 @@ export default function Home() {
         </View>
       </View>
       {/* story start */}
-      <View style={styles.storyDiv}>
-      <FlatList
-      style={{height:'100%'}}
-        data={data}
-        renderItem={({item}) => 
-            <View style={styles.story}>
-              <Image source={item.uri} style={styles.storyImage} />
-              <Text style={styles.storyText}>{item.name}</Text>
-            </View>
-      }
-        keyExtractor={(item) => item.id}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      />
-        
+      <View style={styles.scrolDiv}>
+        <ScrollView style={styles.ScrolHome} 
+         refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        >
+          <View style={styles.storyDiv}>
+          <FlatList
+          style={{height:'100%'}}
+            data={data}
+            renderItem={({item}) => 
+                <Story item={item}/>
+          }
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+            
+          </View>
+          <View style={styles.contentDiv}>{/* uzunuğu içeriğe bağlı olarak ayarlandı */}
+              <HomePost/>
+              <HomePost/>
+          </View>
+        </ScrollView>
       </View>
-      <View style={styles.contentDiv}></View>
     </SafeAreaView>
   )
 }
@@ -88,7 +109,7 @@ const styles =StyleSheet.create({
     backgroundColor:'#fff',
   },
   tabHeader:{
-    flex:0.7,
+    flex:1,
     flexDirection:'row',
     justifyContent:'space-between',
     padding:10,
@@ -101,40 +122,27 @@ const styles =StyleSheet.create({
     fontSize:20
   },
   storyDiv:{
-    flex:1.8,
-    flexDirection:'row',
-    alignItems:'flex-start',
-    paddingLeft:5
-
-  },
-  story:{
-    width:75,
-    height:75,
-    borderRadius:50,
-    borderWidth:2,
-    borderColor:'pink',
-    padding:2,
-    marginLeft:8
-  },
-  storyImage:{
-    width:'100%',
-    height:'100%',
-    borderRadius:50
-  },
-  storyText:{
-    textAlign:'center',
-    marginTop:5,
-    fontSize:12
+    paddingLeft:5,
+    borderBottomWidth:0.5,
+    borderBottomColor:'gray',
+    // backgroundColor:'yellow',
+    height:100
   },
   contentDiv:{
-    flex:10,
-    backgroundColor:'gray'
+
   },
   iconDiv:{
     flex:0.8,
     flexDirection:'row',
     justifyContent:'space-between',
     marginRight:10
+  },
+  scrolDiv:{
+    flex:15,
+    // backgroundColor:'red'
+  },
+  ScrolHome:{
+    flex:1,
   },
 
 })
