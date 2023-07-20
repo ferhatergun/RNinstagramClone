@@ -34,7 +34,8 @@ export default function App() {
           },
           headerShown:false,
           tabBarShowLabel:false,
-          tabBarStyle:styles.tabbar
+          tabBarStyle:styles.tabbar,
+          tabBarHideOnKeyboard:true
 
         })} >
           <Tab.Screen name="Home" component={Home} />
