@@ -60,6 +60,23 @@ export default function Home() {
       id: '8'
     },
   ];
+  const postData =[
+    { 
+        profilePhoto:require("../assets/ufuk.jpg"),
+        username:'ufuközkan',
+        postImage:require("../assets/ufukPost.jpg"),
+        postInformation:'selamlar herkese iyi pazarlar',
+        id:1
+    },
+    {
+        profilePhoto:require("../assets/acun.jpg"),
+        username:'acunilicali',
+        postImage:require("../assets/acun1.jpg"),
+        postInformation:'Hayat boştur lo',
+        id:2
+    }
+]
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -82,7 +99,7 @@ export default function Home() {
         >
           <View style={styles.storyDiv}>
           <FlatList
-          style={{height:'100%'}}
+            style={{height:'100%'}}
             data={data}
             renderItem={({item}) => 
                 <Story item={item}/>
@@ -94,8 +111,11 @@ export default function Home() {
             
           </View>
           <View style={styles.contentDiv}>{/* uzunuğu içeriğe bağlı olarak ayarlandı */}
-              <HomePost/>
-              <HomePost/>
+                {
+                  postData.map((item)=>(
+                    <HomePost item={item} key={item.id} />
+                  ))
+                }
           </View>
         </ScrollView>
       </View>

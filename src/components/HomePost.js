@@ -4,19 +4,19 @@ import  IconEn  from 'react-native-vector-icons/Entypo'
 import  IconIo  from 'react-native-vector-icons/Ionicons'
 
 
-export default function HomePost() {
+export default function HomePost({item}) {
   return (
     <View style={styles.container}>
         <View style={styles.post1Div}>
             <View style={styles.postHeader}>
                 <View style={styles.postHeaderImegeName}>
-                    <Image source={require("../assets/ufuk.jpg")} style={styles.postheaderImage} />
-                    <Text style={styles.postHeadetText}>ufuközkan</Text>
+                    <Image source={item.profilePhoto} style={styles.postheaderImage} />
+                    <Text style={styles.postHeadetText}>{item.username}</Text>
                 </View>
                 <IconEn name='dots-three-vertical' size={18}/>
             </View>
             <View style={styles.postContent}>
-            <Image source={require("../assets/ufukPost.jpg")} style={styles.postContentImage} />
+            <Image source={item.postImage} style={styles.postContentImage} />
             </View>
             <View style={styles.postFooter}>
                 <View style={styles.buttonDiv}>
@@ -31,7 +31,7 @@ export default function HomePost() {
                 </View>
                 <View style={{}}>
                     <Text style={styles.likeText}>375 beğenme</Text>
-                    <Text><Text style={styles.likeText} >ufuközkan</Text> selamlar hekese iyi pazarlar</Text>
+                    <Text><Text style={styles.likeText} >{item.username} </Text>{item.postInformation}</Text>
                     <Text style={styles.commentSee}>68 yorumun tümünü gör</Text>
                     <Text style={styles.date}>3 gün önce</Text>
                 </View>
