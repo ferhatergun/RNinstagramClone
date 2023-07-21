@@ -1,20 +1,23 @@
-import { View, Text ,StyleSheet, ScrollView ,Image} from 'react-native'
+import { View, Text ,StyleSheet, ScrollView ,Image,Dimensions} from 'react-native'
 import React, { useState ,useRef} from 'react'
 import  IconIo  from 'react-native-vector-icons/Ionicons'
 import  IconMC  from 'react-native-vector-icons/MaterialCommunityIcons'
 import  IconMI  from 'react-native-vector-icons/MaterialIcons'
-
-
 import { TouchableOpacity } from 'react-native'
 import ProfileOneCikarilanlar from '../components/ProfileOneCikarilanlar'
-import ProfilePostVideo from '../components/ProfilePostVideo'
+import ProfilePhotoRulos from '../components/ProfilePhotoRulos'
+import ProfileReels from '../components/ProfileReels'
+import ProfileTagYourPhotos from '../components/ProfileTagYourPhotos'
+
+const { width } = Dimensions.get('window');
+
 
 export default function Profile() {
   const [scrollWidth,setScrollWidth]=useState(0)
   const scrollRef=useRef(null)
 
   const scrollToIndex=(pageIndex)=>{
-    scrollRef.current.scrollTo({ x: 400*pageIndex, y: 0, animated: true })
+    scrollRef.current.scrollTo({ x: width*pageIndex, y: 0, animated: true })
   }
   // console.log(scrollRef.current._internalFiberInstanceHandleDEV.ref)
   
@@ -22,7 +25,8 @@ export default function Profile() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerTextDiv}>
-          <Text style={styles.headerText}>ferhaterg303</Text>
+          <Text style={styles.headerText}>demetakalin</Text>
+          <IconMI name='verified' color="blue" size={20}  style={{marginLeft:5}}/>
         </View>
         <View style={styles.headerIcon}>
             <IconIo name='add-circle-outline' size={30} />
@@ -75,11 +79,11 @@ export default function Profile() {
           <View style={styles.scrollPostVideo}>
             <View style={styles.scrolTabbar}>
               <IconMC name='dots-square' size={30} onPress={()=>scrollToIndex(0)}   
-              style={(scrollWidth>=0 && scrollWidth<=200) ? styles.scrolTabbarIconActive:styles.scrolTabbarIcon}/>
+              style={(scrollWidth>=0 && scrollWidth<=(width/2)) ? styles.scrolTabbarIconActive:styles.scrolTabbarIcon}/>
               <IconIo name='film-outline' size={30}  onPress={()=>scrollToIndex(1)}  
-              style={(scrollWidth>200 && scrollWidth<=600) ? styles.scrolTabbarIconActive:styles.scrolTabbarIcon}/>
+              style={(scrollWidth>(width/2) && scrollWidth<=((3*width)/2)) ? styles.scrolTabbarIconActive:styles.scrolTabbarIcon}/>
               <IconMI name='people-outline' size={30}  onPress={()=>scrollToIndex(2)} 
-              style={(scrollWidth>600 && scrollWidth<=800) ? styles.scrolTabbarIconActive:styles.scrolTabbarIcon}/>
+              style={(scrollWidth>((3*width)/2) && scrollWidth<=(3*width)) ? styles.scrolTabbarIconActive:styles.scrolTabbarIcon}/>
             </View>
             <ScrollView horizontal style={{flexGrow:1}}  ref={scrollRef}
             onScroll={(e)=>setScrollWidth(e.nativeEvent.contentOffset.x)}
@@ -93,7 +97,15 @@ export default function Profile() {
               }
             }} 
             >
-              <ProfilePostVideo  />
+              <View style={styles.ScrollPage}>
+                <ProfilePhotoRulos />
+              </View>
+              <View style={styles.ScrollPage}>
+                <ProfileReels />
+              </View>
+              <View style={styles.ScrollPage}>
+                <ProfileTagYourPhotos />
+              </View>
             </ScrollView>
 
           </View>
@@ -121,7 +133,10 @@ const styles =StyleSheet.create({
     flex:10,
   },
   headerTextDiv:{
-    flex:7
+    flex:7,
+    flexDirection:'row',
+    alignItems:'center',
+    
 
   },
   headerText:{
@@ -186,12 +201,9 @@ const styles =StyleSheet.create({
     height:100,
   },
   scrollPostVideo:{
-    // backgroundColor:'yellow',
-    height:400
     
   },
   scrolTabbar:{
-    // backgroundColor:'gray',
     height:50,
     flexDirection:'row',
     justifyContent:'space-around',
@@ -206,5 +218,10 @@ const styles =StyleSheet.create({
   },
   scrolTabbarIcon:{
     paddingHorizontal:40
+  },
+  ScrollPage:{
+    // backgroundColor:'lightblue',
+    flex:1,
+    width:width
   }
 })
