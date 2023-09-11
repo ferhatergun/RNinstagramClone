@@ -25,7 +25,7 @@ export default function Profile() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerTextDiv}>
-          <Text style={styles.headerText}>demetakalin</Text>
+          <Text style={styles.headerText}>acunilicali</Text>
           <IconMI name='verified' color="blue" size={20}  style={{marginLeft:5}}/>
         </View>
         <View style={styles.headerIcon}>
@@ -37,7 +37,7 @@ export default function Profile() {
         <ScrollView>
           <View style={styles.photoAndInformation}>
             <View style={styles.photoDiv}>
-              <Image  source={require("../assets/demet.jpg")}  style={styles.photo}/>
+              <Image  source={require("../assets/acun.jpg")}  style={styles.photo}/>
             </View>
             <View style={styles.information}>
               <View style={styles.textDiv}>
@@ -55,10 +55,10 @@ export default function Profile() {
             </View>
           </View>
           <View style={styles.nameButtonFrontDiv}>
-            <Text style={{fontWeight:500}}>Demet Akalın</Text>
+            <Text style={{fontWeight:500}}>Acun Ilıcalı</Text>
             <Text style={{color:"#828282"}}>Sanatçı</Text>
-            <Text>Pop signer /Demet Akalın resmi hesabı</Text>
-            <Text>İletişim için demetakalin@gmail.com</Text>
+            <Text>Acun Ilıcalı Resmi Instagram Hesabı Değildir</Text>
+            <Text>ww.acunmedya.com</Text>
             <View style={styles.butttonDiv}>
               <TouchableOpacity style={styles.button}>
                 <Text style={{fontWeight:500}}>Profili Düzenle</Text>

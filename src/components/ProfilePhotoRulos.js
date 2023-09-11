@@ -6,11 +6,11 @@ const { width } = Dimensions.get('window');
 
 export default function ProfilePhotoRulos() {
     const data = [
-        { id: 1, image: require('../assets/demet4.jpeg') },
-        { id: 2, image: require('../assets/demet2.jpg') },
-        { id: 3, image: require('../assets/demet3.jpg') },
-        { id: 4, image: require('../assets/demet1.jpg') },
-        { id: 5, image: require('../assets/demet.jpg') },
+        { id: 1, image: require('../assets/acun4.jpg') },
+        { id: 2, image: require('../assets/acun2.jpg') },
+        { id: 3, image: require('../assets/acun3.jpg') },
+        { id: 4, image: require('../assets/acun1.jpg') },
+        { id: 5, image: require('../assets/acun.jpg') },
         // Add more images here...
       ];
       const numColumns = 3;

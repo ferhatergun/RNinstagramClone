@@ -44,7 +44,6 @@ export default function HomePost({item}) {
 const styles =StyleSheet.create({
     container:{
         flex:1,
-        // backgroundColor:'lightblue'
     },
     post1Div:{
         height:550,
@@ -52,7 +51,6 @@ const styles =StyleSheet.create({
     },
     postHeader:{
         flex:1,
-        // backgroundColor:"blue",
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
@@ -60,7 +58,6 @@ const styles =StyleSheet.create({
     },
     postContent:{
         flex:7,
-        backgroundColor:'red'
     },
     postFooter:{
         flex:2.4,
